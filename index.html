@@ -61,15 +61,15 @@
 
           <label for="nombreCompleto"></label><br>
           <input type="text" id="nombre" name="nombreCompleto" size="8" tabindex="1"placeholder="Nombre y Apellido" >
+
+          <label for="checkIn"></label><br>
+          <input type="date" name="checkIn" id="checkIn" placeholder="Fecha de Ingreso" oninput="calculardiasDiscount()">
+          <label for="checkOut"></label><br>
+          <input type="date" name="checkOut" id="checkOut" placeholder="Fecha de Salida" oninput="calculardiasDiscount()">
           <label for="noches"></label><br>
           <input type="text" id="noches" name="noches" placeholder="Noches">
-          <label for="checkIn"></label><br>
-          <input type="date" name="checkIn" id="checkIn" placeholder="Fecha de Ingreso">
-          <label for="checkOut"></label><br>
-          <input type="date" name="checkOut" id="checkOut" placeholder="Fecha de Salida">
-          <label for="solicitud"</label>
           <label for="solicitud"></label>
-          <input type="text" id="solicitud" name="solicitud" required placeholder="Solicitud especial"
+          <input type="text" id="solicitud" name="solicitud"  placeholder="Solicitud especial"
           maxlength="50" size="50">
 
            <!------------------------- DEPARTAMENTOS------------------------>
@@ -86,13 +86,7 @@
    
 <hr>
       <section id="reserva" class="reserva container text-center" > 
-        <div>
-        <h3  >Tu Reserva</h3>
-        
-
-        <button type="button"  class="button--seleccion" id="verReserva" > Consultar reserva</button>
-
-      </div>
+      
   
       </section>
    
@@ -110,7 +104,8 @@
           <p>Derechos Reservados CozyApartments2023</p>
         </footer>
 
-
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
     <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
     <script src="booking.js"></script>\
   </body>
