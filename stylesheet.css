@@ -11,7 +11,7 @@
 }
 
 body {
-  background-color: #6f675383;
+  background-color: #6b534183;
   font-size: 14px;
   font-family: 'Amatic SC', cursive;
 font-family: 'Dosis', sans-serif;
@@ -19,12 +19,12 @@ font-family: 'Dosis', sans-serif;
 }
 a.nav-link {
   text-decoration: none;
-  color: #3e7c60;
+  color: #dff4e9;
   font-size: 25px;
  
 }
 a.nav-link:hover {
-  color: #3bab7b;
+  color: #707e78;
   font-size: larger;
   text-transform: uppercase;
 }
@@ -32,15 +32,24 @@ li {
   list-style: none;
 }
 
+.portada {
+
+  position: absolute;
+  z-index: 5;
+}
+
 .imagenDePortada {
   width:auto;
   height: auto;
+  opacity: 50%;
+  
 }
 
 
 .navbar  { 
 
     height: 100px;
+    background: #6d556998;
 
 
 }
@@ -51,7 +60,6 @@ li {
 .navbar-nav { 
 
   font-size: large;
-  color: white;
   width: 800px;
 
 
@@ -100,6 +108,8 @@ font-size: 30px;
   border-radius: 6px 6px 0 0;
   box-shadow: rgb(247, 244, 244) 0px 2px 8px 0px;
   padding: 20px;
+  position: relative;
+  z-index: 10;
  
 }
 
@@ -114,7 +124,7 @@ margin-top: 15px;
 }
 .departamentosContenedor--label{
 
-background-color: #487b6cc1;
+background-color: #6d556998;
 padding: 20px;
 transition: 0.8s;
 cursor: pointer;
@@ -127,7 +137,7 @@ font-size: 30px;
 
 padding: 15px 10px;;
 font-size: 18px;
-color: #487b6c;
+color: #101312;
 width: 50%;
 
 
@@ -141,6 +151,7 @@ width: 50%;
 	padding:10px 10px;
 	text-align: center;
   font-size: 19px;
+
   
 }
 
@@ -151,7 +162,8 @@ width: 50%;
   color: white;
   padding: 20px;
   font-size: 26px;
-  background-color: #487b6c64;
+  background-color: #6f675340;
+  width: auto;
 }
 
 
@@ -160,8 +172,8 @@ width: 50%;
 .container button:hover {
   text-transform: uppercase;
   border: none;
-  background-color:  #396a53;
-  transition: 0.2s;
+  background-color:  #6f675383;
+  transition: 0.5s;
   color: #fff;
   margin: 0 auto;
   margin-top: 20px;

@@ -1,12 +1,12 @@
 let contador= 0;
-let images=  [ "./images/cozy I.jpeg ", "./images/cozy II.jpg" ,"./images/portada.jpg" , "./images/modern-living-room-style.jpg" ]; 
+let images=  [ "./images/cozy I.jpeg ", "./images/cozy II.jpg" ,"./images/portada.jpg" , "./images/modern-living-room-style.jpg", ]; 
 
 setTimeout( ()  => { progress()  }, 2000 );
 
 
 function progress() {
     if (contador < 4) {  
-       document.images[0].src=images[contador];
+       document.images[0].src= images[contador];
        contador++;
        setTimeout("progress()",2000);
     }
@@ -49,9 +49,9 @@ class Departamento {
     }      
 /********************  CREACION DE OBJETOS DEPARTAMENTOS ******************/
 
-const cozy1 = new Departamento ( "Cozy I",2 ,4, "./images/cozy I.jpeg", 8000);
-const cozy2 = new Departamento ( "Cozy II",3 ,3, "./images/cozy I.jpeg", 7000);
-const cozy3 = new Departamento ( "Cozy III",1 ,2, "./images/cozy I.jpeg",6000);    
+const cozy1 = new Departamento ( "Cozy I",2 ,4, "./images/cozy II.jpg", 8000);
+const cozy2 = new Departamento ( "Cozy II",3 ,3, "./images/cozy II.jpg", 7000);
+const cozy3 = new Departamento ( "Cozy III",1 ,2, "./images/cozy II.jpg",6000);    
 
 const arrayDepartamentos  = [cozy1 , cozy2, cozy3]; 
 
@@ -182,9 +182,8 @@ const verReserva = document.getElementById("formulario");
             div.innerHTML = `
                         <hr>
                         <div class ="container text-star">
-                        <h3  >Tu Reserva</h3>
 
-                                <h4  >Tu Reserva</h4>
+                                <h3  >Tu Reserva</h3>
                                 <h3 class = "text-center"> ${reserva.saludar()}  </h3>
                                 <p> Nombre y Apellido: ${reserva.nombre} </p>
                                 <p> Noches: ${reserva.noches} </p>
