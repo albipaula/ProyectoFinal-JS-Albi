@@ -33,7 +33,7 @@ let reservaUsuario = [];
 
 if(localStorage.getItem("booking")){
     booking = JSON.parse(localStorage.getItem("booking"));
-console.log(booking , typeof booking)// SACAR
+//console.log(booking , typeof booking)// SACAR
 
 }
 
@@ -97,7 +97,7 @@ function agregarReserva(personas) {
     const dptoAsignado = arrayDepartamentos.find(departamento => departamento.personas == personas);
     if (dptoAsignado) {
         reservaUsuario.push(dptoAsignado);
-        console.log(reservaUsuario);
+        //console.log(reservaUsuario);
         
         //console.log(dptoAsignado)
     }
@@ -149,7 +149,7 @@ function calculardiasDiscount() {
         console.log(booking);
         localStorage.setItem("booking", booking);
         console.log(reservaUsuario);
-        console.log(reserva); 
+       // console.log(reserva); 
 
 /*FUNCION QUE CALCULA EL PRECIO TOTAL DE LA RESERVA */ 
 
@@ -174,9 +174,6 @@ const verReserva = document.getElementById("formulario");
 
 
         const carrito = () => {
-
-
-            
             const div = document.createElement("div");
             div.className = "container reservaContainer";
             div.innerHTML = `
@@ -193,14 +190,43 @@ const verReserva = document.getElementById("formulario");
                                 <p> Departamento: ${reservaUsuario[0].nombre} </p>
                                 <p> Precio Noche: $ ${reservaUsuario[0].precioXnoche} </p>
                                 <p> Precio Total: $ ${precioTotalAPagar()} </p>
-                                <button class = "btn button--seleccion " id="eliminar" > Modificar Reserva</button $>
-                                <button class = "btn button--seleccion" id="eliminar" > Cancelar Reserva</button>
+                                <button class = "btn button--seleccion " id="modificar" > Modificar Reserva</button $> <hr>
+                                <button class = "btn button--seleccion" id="eliminarReserva" > Cancelar Reserva</button>
                             
                         </div>`;
             reservaContainer.appendChild(div);
 
-        };
-    });
+const eliminarReserva = document.getElementById ("eliminarReserva");
+   eliminarReserva.addEventListener ("click" , () =>  {
+
+    Swal.fire({
+        title: 'Estas seguro que quieres eliminar la Reserva?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, cancelar la Reserva!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire(
+            'Eliminada!',
+            'Tu Reserva fue eliminada, esperamos verte pronto.',
+            'success'
+          ,  vaciarReserva()  )
+        }  
+      })
+    
+   
+    } )
+}
+})
+
+const vaciarReserva = () => { 
+
+    reservaUsuario = []; 
+   console.log(reservaUsuario);
+   
+}
 
 	/* MODIFICAR RESERVA */ 
 // TENGO QUE ACCEDER AL ARRAY 'RESERVAUSUARIO' 0 DEPARTAMENTO 1 PERSONA 
@@ -208,6 +234,9 @@ const verReserva = document.getElementById("formulario");
 //
 
     /* CANCELAR RESERVA */ 
+
+
+
 
     //CLEAR EL ARRAY 'RESERVAUSUARIO'
 
