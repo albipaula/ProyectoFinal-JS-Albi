@@ -114,10 +114,16 @@ function calculardiasDiscount() {
     {
         const diff = timeEnd.getTime() - timeStart.getTime();
         document.getElementById("noches").value = Math.round(diff / (1000 * 60 * 60 * 24));
-    }
+    } 
+     if (timeStart != null && timeStart < actualDate) {
+        Swal.fire ({
+            icon:'error',
+            text: 'La fecha inicial de la estadia no debe ser menor que la fecha actual',
+            width:'500px'
+        })}
     else if (timeEnd != null && timeEnd < timeStart) {
         Swal.fire ({
-            icon:'warning',
+            icon:'error',
             text: 'La fecha final de la estadia debe ser mayor a la fecha inicial',
             width:'500px'
         });
@@ -203,18 +209,21 @@ const eliminarReserva = document.getElementById ("eliminarReserva");
 
     Swal.fire({
         title: 'Estas seguro que quieres eliminar la Reserva?',
-        icon: 'warning',
+      
+        
         showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
+        
+        confirmButtonColor: 'purple',
+        cancelButtonColor: 'purple',
         confirmButtonText: 'Si, cancelar la Reserva!'
       }).then((result) => {
         if (result.isConfirmed) {
-          Swal.fire(
-            'Eliminada!',
-            'Tu Reserva fue eliminada, esperamos verte pronto.',
-            'success'
-          ,  vaciarReserva(), refresh()  )
+          Swal.fire({
+            text:'Eliminada!',
+            iconColor:'#995a9fc8',
+            text:'Tu Reserva fue eliminada, esperamos verte pronto.',
+            icon:'success'
+            } ,vaciarReserva(), refresh()  )
         }  
       }) 
     } )
