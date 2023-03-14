@@ -1,3 +1,5 @@
+
+
 let contador= 0;
 let images=  [ "./images/cozy I.jpeg ", "./images/cozy II.jpg" ,"./images/portada.jpg" , "./images/modern-living-room-style.jpg", ]; 
 
@@ -68,11 +70,12 @@ arrayDepartamentos.forEach(departamento => {
                             <div class= "container text-center">
                                 <h2 class= "text-center" > ${departamento.nombre} </h2>
                             <div>
-                                    <img class= "dptoImg" src= "${departamento.url}">
+                                    <img class= "dptoImg" id= "imgdpto" src= "${departamento.url}">
                                     <p>Habitaciones: ${departamento.rooms} </p>
                                     <p>Personas Max: ${departamento.personas} </p>
                                     <p>Precio Noche: $ ${departamento.precioXnoche} </p>
                                     <button    id="boton${departamento.personas}" class="button--seleccion "> Seleccionar</button>
+                                    
                                     </div>
                             </div>
                             `
@@ -173,12 +176,12 @@ const verReserva = document.getElementById("formulario");
 
 
 
-        const carrito = () => {
+        const carrito = () => {   
             const div = document.createElement("div");
             div.className = "container reservaContainer";
             div.innerHTML = `
                         <hr>
-                        <div class ="container text-star">
+                        <div class ="container text-star card">
 
                                 <h3  >Tu Reserva</h3>
                                 <h3 class = "text-center"> ${reserva.saludar()}  </h3>
@@ -189,8 +192,7 @@ const verReserva = document.getElementById("formulario");
                                 <p> Solicitud: ${reserva.solicitud} </p>
                                 <p> Departamento: ${reservaUsuario[0].nombre} </p>
                                 <p> Precio Noche: $ ${reservaUsuario[0].precioXnoche} </p>
-                                <p> Precio Total: $ ${precioTotalAPagar()} </p>
-                                <button class = "btn button--seleccion " id="modificar" > Modificar Reserva</button $> <hr>
+                                <p id= "precioTotalAPAgar"> Precio Total: $ ${precioTotalAPagar()} </p>
                                 <button class = "btn button--seleccion" id="eliminarReserva" > Cancelar Reserva</button>
                             
                         </div>`;
@@ -212,15 +214,14 @@ const eliminarReserva = document.getElementById ("eliminarReserva");
             'Eliminada!',
             'Tu Reserva fue eliminada, esperamos verte pronto.',
             'success'
-          ,  vaciarReserva()  )
+          ,  vaciarReserva(), refresh()  )
         }  
-      })
-    
-   
+      }) 
     } )
-}
-})
+     } 
+    })
 
+    /* CANCELAR RESERVA */ 
 const vaciarReserva = () => { 
 
     reservaUsuario = []; 
@@ -228,26 +229,40 @@ const vaciarReserva = () => {
    
 }
 
-	/* MODIFICAR RESERVA */ 
-// TENGO QUE ACCEDER AL ARRAY 'RESERVAUSUARIO' 0 DEPARTAMENTO 1 PERSONA 
-//TRAER EL FORMULARIO CON LOS DATOS Y LUEGO APRETAR ACEPTAR PARA GUARDAR LOS NUEVOS DATOS 
-//
 
-    /* CANCELAR RESERVA */ 
+/* FETCH */ 
+
+const criptoYa = "https://criptoya.com/api/dolar";
+
+const precioDolar = document.getElementById("precioDolar");
+
+setInterval( () => {
+    fetch(criptoYa)
+        .then(response => response.json())
+        .then(({blue, oficial}) => {
+            precioDolar.innerHTML = `
+                <p id= "dolarOficial"> Dolar oficial: $ ${oficial} </p>
+                <p id="dolarTurista"> Dolar Turista:  $ ${blue} </p>
+            `
+           /*  const pesos = document.getElementById ("precioTotalAPAgar")
+            const dolarTurista = document.getElementById ("dolarTurista");
+            precioEnDolares (pesos , dolarTurista)
+            console.log ( pesos  );
+            console.log ( dolarTurista)
+        */
+        })
+        .catch(error => console.error(error))
 
 
+}, 3000)
 
 
-    //CLEAR EL ARRAY 'RESERVAUSUARIO'
+function refresh () { 
 
-
-
-
-//This code defines a function agregarReserva that adds a new booking to an array called reservaUsuario. The function first finds a department from an array called arrayDepartamentos that can accommodate the number of personas specified in the booking. If a department is found, the function creates a new Reserva object using the form data submitted by the user and adds it to the reservaUsuario. Finally, the function converts the reservaUsuario to JSON and stores it in the browser's local storage.
-
-//There is also an event listener attached to a form with ID formulario that listens for form submission. When the form is submitted, it creates a new Reserva object and adds it to the reservaUsuario. It then calls the carrito function to display the new booking in the HTML.
-
-//The carrito function creates a new div element and appends it to the reservaContainer element in the HTML. The div displays the details of the new booking, including the department assigned to the booking and the price per night for that department. There are also two buttons that allow the user to modify or cancel the booking.
-
-//Note that the code contains some comments that provide additional information about what the code is doing.
-
+const refreshing = document.getElementById ("imgPortada") 
+const div = document.createElement("div");
+            div.className = "container reservaContainer";
+            div.innerHTML = `
+                       <p> ${refreshing} </p>
+                        <img> ./images/portada.jpeg
+  ` }
