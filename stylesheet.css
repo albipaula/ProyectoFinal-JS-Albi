@@ -195,6 +195,7 @@ width: 50%;
 }
 
 .redes{ 
+  margin-top: 30px;
     padding: 40px;
     width: 100%;
     display: flex;
@@ -202,8 +203,8 @@ width: 50%;
 } 
 
 .footer { 
-
-  padding: 20px;
+margin-top: 10px;
+  padding: 50px;
   text-align: center;
   box-shadow: rgb(251, 250, 250) 0px 2px 8px 0px;
 

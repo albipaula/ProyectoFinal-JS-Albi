@@ -1,16 +1,16 @@
 
 
 let contador= 0;
-let images=  [ "./images/cozy I.jpeg ", "./images/cozy II.jpg" ,"./images/portada.jpg" , "./images/modern-living-room-style.jpg", ]; 
+let images=  [ "./images/cozy II.jpg ", "./images/cozy III.jpg" ,"./images/portada.jpg" , "./images/cozy II.jpg ","./images/cozy I.jpg ","./images/mendoza.jpg "]; 
 
-setTimeout( ()  => { progress()  }, 2000 );
+setTimeout( ()  => { progress()  }, 4000 );
 
 
 function progress() {
-    if (contador < 4) {  
+    if (contador < 6) {  
        document.images[0].src= images[contador];
        contador++;
-       setTimeout("progress()",2000);
+       setTimeout("progress()",4000);
     }
  }
 /******************************  CLASES  *********************************/
@@ -51,9 +51,9 @@ class Departamento {
     }      
 /********************  CREACION DE OBJETOS DEPARTAMENTOS ******************/
 
-const cozy1 = new Departamento ( "Cozy I",2 ,4, "./images/cozy II.jpg", 8000);
+const cozy1 = new Departamento ( "Cozy I",2 ,4, "./images/cozy I.jpg", 8000);
 const cozy2 = new Departamento ( "Cozy II",3 ,3, "./images/cozy II.jpg", 7000);
-const cozy3 = new Departamento ( "Cozy III",1 ,2, "./images/cozy II.jpg",6000);    
+const cozy3 = new Departamento ( "Cozy III",1 ,2, "./images/cozy III.jpg",6000);    
 
 const arrayDepartamentos  = [cozy1 , cozy2, cozy3]; 
 
@@ -271,10 +271,7 @@ setInterval( () => {
             ` 
       const dolarTurista =(blue) ;
       console.log (dolarTurista); 
-      function  dolares (a,b,c) {   
-    return (a* b) /c
-        
-    }
+   
      // console.log (dolares (precioTotalAPagar() ,dolarTurista))
         })
 
