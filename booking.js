@@ -107,21 +107,21 @@ function agregarReserva(personas) {
 }
 
 function calculardiasDiscount() {
-    const timeStart = new Date(document.getElementById("checkIn").value);
-    const timeEnd = new Date(document.getElementById("checkOut").value);
-    const actualDate = new Date();
-    if (timeEnd > timeStart)
+    const checkIn = new Date(document.getElementById("checkIn").value);
+    const checkOut = new Date(document.getElementById("checkOut").value);
+    const fechaActual = new Date();
+    if (checkOut > checkIn)
     {
-        const diff = timeEnd.getTime() - timeStart.getTime();
+        const diff = checkOut.getTime() - checkIn.getTime();
         document.getElementById("noches").value = Math.round(diff / (1000 * 60 * 60 * 24));
     } 
-     if (timeStart != null && timeStart < actualDate) {
+     if ( checkIn < fechaActual) {
         Swal.fire ({
             icon:'error',
             text: 'La fecha inicial de la estadia no debe ser menor que la fecha actual',
             width:'500px'
         })}
-    else if (timeEnd != null && timeEnd < timeStart) {
+    else if ( checkOut < checkIn) {
         Swal.fire ({
             icon:'error',
             text: 'La fecha final de la estadia debe ser mayor a la fecha inicial',
@@ -166,9 +166,10 @@ function precioTotalAPagar () {
 
         const totalNoches = (reserva.noches);
         const precioDpto = (reservaUsuario[0].precioXnoche);
+        
 return (totalNoches * precioDpto);
 
-}
+};
 
 
 
@@ -200,11 +201,13 @@ const verReserva = document.getElementById("formulario");
                                 <p> Precio Noche: $ ${reservaUsuario[0].precioXnoche} </p>
                                 <p id= "precioTotalAPAgar"> Precio Total: $ ${precioTotalAPagar()} </p>
                                 <button class = "btn button--seleccion" id="eliminarReserva" > Cancelar Reserva</button>
+                                <button class = "btn button--seleccion" id="cerrar" > Cerrar</button>
                             
                         </div>`;
             reservaContainer.appendChild(div);
-
-const eliminarReserva = document.getElementById ("eliminarReserva");
+ 
+  
+const eliminarReserva = document.getElementById ("eliminarReserva"); 
    eliminarReserva.addEventListener ("click" , () =>  {
 
     Swal.fire({
@@ -223,21 +226,33 @@ const eliminarReserva = document.getElementById ("eliminarReserva");
             iconColor:'#995a9fc8',
             text:'Tu Reserva fue eliminada, esperamos verte pronto.',
             icon:'success'
-            } ,vaciarReserva(), refresh()  )
+            } ,vaciarReserva(),  setTimeout( ()  => { location.reload()  }, 4000 ))
         }  
-      }) 
+      }  ) 
     } )
-     } 
+   /* FINALIZAR RESERVA */ 
+   const cerrarReserva = document.getElementById ("cerrar");
+   cerrarReserva.addEventListener ( "click", ()=> {
+
+    Swal.fire({
+        title: 'Gracias por tu compra'
+        } , setTimeout( ()  => { location.reload()  }, 1500 ))
+
+   } );   } 
     })
 
     /* CANCELAR RESERVA */ 
 const vaciarReserva = () => { 
 
     reservaUsuario = []; 
+    localStorage.clear();
    console.log(reservaUsuario);
    
-}
+};
 
+
+
+   
 
 /* FETCH */ 
 
@@ -249,29 +264,23 @@ setInterval( () => {
     fetch(criptoYa)
         .then(response => response.json())
         .then(({blue, oficial}) => {
+            
             precioDolar.innerHTML = `
                 <p id= "dolarOficial"> Dolar oficial: $ ${oficial} </p>
                 <p id="dolarTurista"> Dolar Turista:  $ ${blue} </p>
-            `
-           /*  const pesos = document.getElementById ("precioTotalAPAgar")
-            const dolarTurista = document.getElementById ("dolarTurista");
-            precioEnDolares (pesos , dolarTurista)
-            console.log ( pesos  );
-            console.log ( dolarTurista)
-        */
+            ` 
+      const dolarTurista =(blue) ;
+      console.log (dolarTurista); 
+      function  dolares (a,b,c) {   
+    return (a* b) /c
+        
+    }
+     // console.log (dolares (precioTotalAPagar() ,dolarTurista))
         })
+
+        
         .catch(error => console.error(error))
-
-
+    
 }, 3000)
 
 
-function refresh () { 
-
-const refreshing = document.getElementById ("imgPortada") 
-const div = document.createElement("div");
-            div.className = "container reservaContainer";
-            div.innerHTML = `
-                       <p> ${refreshing} </p>
-                        <img> ./images/portada.jpeg
-  ` }
