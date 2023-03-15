@@ -1,5 +1,5 @@
 
-
+/******************************  SLIDES IMAGENES PORTADA *********************************/
 let contador= 0;
 let images=  [ "./images/cozy II.jpg ", "./images/cozy III.jpg" ,"./images/portada.jpg" , "./images/cozy II.jpg ","./images/cozy I.jpg ","./images/mendoza.jpg "]; 
 
@@ -16,14 +16,14 @@ function progress() {
 /******************************  CLASES  *********************************/
 
 class Reserva {
-    constructor (personas,nombre,noches,checkIn, checkOut,solicitud ){ 
+    constructor (personas,nombre,noches,checkIn, checkOut,comentario ){ 
 
         this.personas = personas;
         this.nombre = nombre;
         this.noches = noches;
         this.checkIn= checkIn;
         this.checkOut= checkOut;
-        this.solicitud = solicitud
+        this.comentario = comentario
         
     }
 
@@ -80,8 +80,10 @@ arrayDepartamentos.forEach(departamento => {
                             </div>
                             `
                             departamentosContenedor.appendChild (div);
-/*AGREGAR DATOS A LA RESERVA */
-        const boton = document.getElementById(`boton${departamento.personas}`);
+                            
+/******************************AGREGAR DATOS A LA RESERVA ******************************/
+
+const boton = document.getElementById(`boton${departamento.personas}`);
 boton.addEventListener("click", () => {
     Swal.fire({
         title: 'Seleccionado',
@@ -94,8 +96,12 @@ boton.addEventListener("click", () => {
         })
     })
 }
+
+/****************************** SE AGREGAN LAS OPCIONES DE DEPARTAMENTOS AL DOM ******************************/
+
 departamentosOpciones();
-/* FUNCION PARA AGREGAR A LA RESERVA EL DPTO SELECCIONADO POR EL USUARIO*/
+
+/****************************** FUNCION PARA AGREGAR A LA RESERVA EL DPTO SELECCIONADO POR EL USUARIO******************************/
 function agregarReserva(personas) {
     const dptoAsignado = arrayDepartamentos.find(departamento => departamento.personas == personas);
     if (dptoAsignado) {
@@ -106,6 +112,9 @@ function agregarReserva(personas) {
     }
 }
 
+
+
+/****************************** FUNCION PARA CALCULAR DIAS ******************************/
 function calculardiasDiscount() {
     const checkIn = new Date(document.getElementById("checkIn").value);
     const checkOut = new Date(document.getElementById("checkOut").value);
@@ -128,14 +137,21 @@ function calculardiasDiscount() {
             width:'500px'
         });
         document.getElementById("noches").value = 0;
+    }}
+
+/******************************FUNCION QUE CALCULA EL PRECIO TOTAL DE LA RESERVA ******************************/ 
+const precioTotalAPagar = () => {
+
+    const totalNoches = (reservaUsuario.noches);
+    const precioDpto = (reservaUsuario[0].precioXnoche);
+   
+return (totalNoches * precioDpto);
+
+};
 
 
-    }
+/****************************** FUNCION PARA OBTENER DATOS INGRESADOS POR EL USUARIO ******************************/
 
-}
-
-
-    /* FUNCION PARA OBTENER DATOS INGRESADOS POR EL USUARIO */
     const formulario = document.getElementById("formulario");
     formulario.addEventListener("submit", (e) => {
         e.preventDefault();
@@ -146,12 +162,12 @@ function calculardiasDiscount() {
         const noches = document.getElementById("noches");
         const checkIn = document.getElementById("checkIn");
         const checkOut = document.getElementById("checkOut");
-        const solicitud = document.getElementById("solicitud");
+        const comentario = document.getElementById("comentario");
 
-        const reserva = new Reserva(personas.value, nombre.value, noches.value, checkIn.value, checkOut.value, solicitud.value);
+        const reserva = new Reserva(personas.value, nombre.value, noches.value, checkIn.value, checkOut.value, comentario.value);
         reservaUsuario.push(reserva);
         formulario.reset();
-        ;
+        
 
         const booking = JSON.stringify(reservaUsuario);
 
@@ -160,21 +176,9 @@ function calculardiasDiscount() {
         console.log(reservaUsuario);
        // console.log(reserva); 
 
-/*FUNCION QUE CALCULA EL PRECIO TOTAL DE LA RESERVA */ 
-
-function precioTotalAPagar () {
-
-        const totalNoches = (reserva.noches);
-        const precioDpto = (reservaUsuario[0].precioXnoche);
-        
-return (totalNoches * precioDpto);
-
-};
+/****************************** FUNCION PARA AGREGAR RESERVA REALIZADA POR EL CLIENTE AL HTML******************************/
 
 
-
-/* FUNCION PARA AGREGAR RESERVA REALIZADA POR EL CLIENTE AL HTML*/
-      
 const reservaContainer = document.getElementById("reserva");
 const verReserva = document.getElementById("formulario");
         verReserva.addEventListener("click", () => {
@@ -182,8 +186,9 @@ const verReserva = document.getElementById("formulario");
         });
 
 
+/****************************** FUNCION PARA CREAR RESERVA *****************************/
 
-        const carrito = () => {   
+const carrito = () => {   
             const div = document.createElement("div");
             div.className = "container reservaContainer";
             div.innerHTML = `
@@ -196,7 +201,7 @@ const verReserva = document.getElementById("formulario");
                                 <p> Noches: ${reserva.noches} </p>
                                 <p> CheckIN: ${reserva.checkIn} </p>
                                 <p> CheckOut: ${reserva.checkOut} </p>
-                                <p> Solicitud: ${reserva.solicitud} </p>
+                                <p> comentario: ${reserva.comentario} </p>
                                 <p> Departamento: ${reservaUsuario[0].nombre} </p>
                                 <p> Precio Noche: $ ${reservaUsuario[0].precioXnoche} </p>
                                 <p id= "precioTotalAPAgar"> Precio Total: $ ${precioTotalAPagar()} </p>
@@ -207,15 +212,24 @@ const verReserva = document.getElementById("formulario");
             reservaContainer.appendChild(div);
  
   
-const eliminarReserva = document.getElementById ("eliminarReserva"); 
+eliminarReserva();
+   
+cerrarReserva()
+} 
+    })
+
+
+
+
+/****************************** FUNCION PARA ELIMINAR RESERVA ******************************/
+
+function eliminarReserva () {
+    const eliminarReserva = document.getElementById ("eliminarReserva"); 
    eliminarReserva.addEventListener ("click" , () =>  {
 
     Swal.fire({
         title: 'Estas seguro que quieres eliminar la Reserva?',
-      
-        
         showCancelButton: true,
-        
         confirmButtonColor: 'purple',
         cancelButtonColor: 'purple',
         confirmButtonText: 'Si, cancelar la Reserva!'
@@ -229,32 +243,27 @@ const eliminarReserva = document.getElementById ("eliminarReserva");
             } ,vaciarReserva(),  setTimeout( ()  => { location.reload()  }, 4000 ))
         }  
       }  ) 
-    } )
-   /* FINALIZAR RESERVA */ 
-   const cerrarReserva = document.getElementById ("cerrar");
-   cerrarReserva.addEventListener ( "click", ()=> {
+    } )}
+  /****************************** FUNCION PARA CANCELAR RESERVA******************************/
 
-    Swal.fire({
-        title: 'Gracias por tu compra'
-        } , setTimeout( ()  => { location.reload()  }, 1500 ))
-
-   } );   } 
-    })
-
-    /* CANCELAR RESERVA */ 
 const vaciarReserva = () => { 
 
     reservaUsuario = []; 
     localStorage.clear();
-   console.log(reservaUsuario);
-   
+    console.log(reservaUsuario);
 };
+ /****************************** CERRAR RESERVA ******************************/ 
+function cerrarReserva () { const cerrarReserva = document.getElementById ("cerrar");
+ cerrarReserva.addEventListener ( "click", ()=> {
+
+  Swal.fire({
+      title: 'Gracias por tu compra'
+      } , setTimeout( ()  => { location.reload()  }, 1500 ))
+
+ } )}; 
 
 
-
-   
-
-/* FETCH */ 
+/************************** FETCH **************************/ 
 
 const criptoYa = "https://criptoya.com/api/dolar";
 
