@@ -33,9 +33,10 @@ class Reserva {
 
 let reservaUsuario = [];
 
+// obtener el booking desde el local storage
+
 if(localStorage.getItem("booking")){
     booking = JSON.parse(localStorage.getItem("booking"));
-//console.log(booking , typeof booking)// SACAR
 
 }
 
@@ -119,7 +120,7 @@ function calculardiasDiscount() {
     const checkIn = new Date(document.getElementById("checkIn").value);
     const checkOut = new Date(document.getElementById("checkOut").value);
     const fechaActual = new Date();
-    if (checkOut > checkIn)
+    if (checkOut > checkIn )
     {
         const diff = checkOut.getTime() - checkIn.getTime();
         document.getElementById("noches").value = Math.round(diff / (1000 * 60 * 60 * 24));
@@ -127,8 +128,8 @@ function calculardiasDiscount() {
      if ( checkIn < fechaActual) {
         Swal.fire ({
             icon:'error',
-            text: 'La fecha inicial de la estadia no debe ser menor que la fecha actual',
-            width:'500px'
+            text: 'La fecha inicial de la estadia no debe ser menor que la fecha actual . Las reservas deben realizarse con al menos 24hs de anticipacion ' ,
+            width:'1000px'
         })}
     else if ( checkOut < checkIn) {
         Swal.fire ({
@@ -173,15 +174,15 @@ return (totalNoches * precioDpto);
 
         console.log(booking);
         localStorage.setItem("booking", booking);
-        console.log(reservaUsuario);
+       // console.log(reservaUsuario);
        // console.log(reserva); 
 
 /****************************** FUNCION PARA AGREGAR RESERVA REALIZADA POR EL CLIENTE AL HTML******************************/
 
 
 const reservaContainer = document.getElementById("reserva");
-const verReserva = document.getElementById("formulario");
-        verReserva.addEventListener("click", () => {
+const reservaFormulario = document.getElementById("formulario");
+        reservaFormulario.addEventListener("click", () => {
             carrito();
         });
 
@@ -278,10 +279,8 @@ setInterval( () => {
                 <p id= "dolarOficial"> Dolar oficial: $ ${oficial} </p>
                 <p id="dolarTurista"> Dolar Turista:  $ ${blue} </p>
             ` 
-      const dolarTurista =(blue) ;
-      console.log (dolarTurista); 
+    
    
-     // console.log (dolares (precioTotalAPagar() ,dolarTurista))
         })
 
         
