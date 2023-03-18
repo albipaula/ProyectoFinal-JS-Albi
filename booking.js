@@ -81,7 +81,7 @@ arrayDepartamentos.forEach(departamento => {
                             `
                             departamentosContenedor.appendChild (div);
                             
-/******************************AGREGAR DATOS A LA RESERVA ******************************/
+/****************************** SELECCION DE DEPARTAMENTO A LA RESERVA ******************************/
 
 const boton = document.getElementById(`boton${departamento.personas}`);
 boton.addEventListener("click", () => {
@@ -108,7 +108,7 @@ function agregarReserva(personas) {
         reservaUsuario.push(dptoAsignado);
         //console.log(reservaUsuario);
         
-        //console.log(dptoAsignado)
+        console.log(dptoAsignado)
     }
 }
 
@@ -141,9 +141,9 @@ function calculardiasDiscount() {
 
 /******************************FUNCION QUE CALCULA EL PRECIO TOTAL DE LA RESERVA ******************************/ 
 const precioTotalAPagar = () => {
-
-    const totalNoches = (reservaUsuario.noches);
     const precioDpto = (reservaUsuario[0].precioXnoche);
+    const totalNoches = (reservaUsuario[1].noches);
+    
    
 return (totalNoches * precioDpto);
 
