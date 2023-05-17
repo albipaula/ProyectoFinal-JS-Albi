@@ -117,12 +117,12 @@ padding-top: 30px;
  
 }
 
-.departamentosOpciones{  
+.departamentosOpciones{ 
+  width: 100%;
 display: flex;
 flex-direction: row;
-flex-wrap: nowrap;
+flex-wrap: wrap;
 justify-content: center;
-margin-top: 15px;
 
 
 
@@ -246,12 +246,6 @@ background-color: #6d556957;
   cursor: pointer;
 }
 
-.departamentosOpciones { 
-
-display: flex;
-flex-wrap: wrap;
 
 
-}
-
-.departamentosOpciones div { max-width: 300px;}
+.departamentosOpciones div { max-width: 300px; height: auto;}
