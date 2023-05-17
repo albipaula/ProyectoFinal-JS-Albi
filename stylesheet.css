@@ -43,6 +43,7 @@ li {
   height: auto;
   opacity: 50%;
   
+  
 }
 
 
@@ -245,3 +246,12 @@ background-color: #6d556957;
   cursor: pointer;
 }
 
+.departamentosOpciones { 
+
+display: flex;
+flex-wrap: wrap;
+
+
+}
+
+.departamentosOpciones div { max-width: 300px;}
