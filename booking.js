@@ -1,7 +1,7 @@
 
 /******************************  SLIDES IMAGENES PORTADA *********************************/
 let contador= 0;
-let images=  [ "./images/cozy II.jpg ", "./images/cozy III.jpg" ,"./images/portada.jpg" , "./images/cozy II.jpg ","./images/cozy I.jpg ","./images/mendoza.jpg "]; 
+let images=  [ "./images/cozy II (1).webp ", "./images/cozy II (1).webp ","./images/cozy I.webp ","./images/mendoza (1).webp ", "./images/cozy II (1).webp ", "./images/mendoza (1).webp"]; 
 
 setTimeout( ()  => { progress()  }, 4000 );
 
@@ -31,6 +31,7 @@ class Reserva {
 
     }
 
+    
 let reservaUsuario = [];
 
 // obtener el booking desde el local storage
@@ -40,6 +41,7 @@ if(localStorage.getItem("booking")){
 
 }
 
+/******************** MODELO DEPARTAMENTOS ******************/
 
 class Departamento {
     constructor ( nombre,rooms,personas, url,precioXnoche) {
@@ -52,9 +54,9 @@ class Departamento {
     }      
 /********************  CREACION DE OBJETOS DEPARTAMENTOS ******************/
 
-const cozy1 = new Departamento ( "Cozy I",2 ,4, "./images/cozy I.jpg", 8000);
-const cozy2 = new Departamento ( "Cozy II",3 ,3, "./images/cozy II.jpg", 7000);
-const cozy3 = new Departamento ( "Cozy III",1 ,2, "./images/cozy III.jpg",6000);    
+const cozy1 = new Departamento ( "Cozy I",2 ,4, "./images/cozy I.webp", 8000);
+const cozy2 = new Departamento ( "Cozy II",3 ,3, "./images/cozy II (1).webp", 7000);
+const cozy3 = new Departamento ( "Cozy III",1 ,2, "./images/cozy III (1).webp",6000);    
 
 const arrayDepartamentos  = [cozy1 , cozy2, cozy3]; 
 
@@ -64,7 +66,7 @@ const arrayDepartamentos  = [cozy1 , cozy2, cozy3];
 const departamentosContenedor =document.getElementById ("departamentosOpciones"); 
 
 const departamentosOpciones = () => {
-arrayDepartamentos.forEach(departamento => {
+arrayDepartamentos.forEach((departamento) => {
         const div = document.createElement("div"); 
         div.className =  "container caja departamentosContenedor--label  " ;
         div.innerHTML = `   
@@ -97,7 +99,6 @@ boton.addEventListener("click", () => {
         })
     })
 }
-
 /****************************** SE AGREGAN LAS OPCIONES DE DEPARTAMENTOS AL DOM ******************************/
 
 departamentosOpciones();
@@ -105,10 +106,9 @@ departamentosOpciones();
 /****************************** FUNCION PARA AGREGAR A LA RESERVA EL DPTO SELECCIONADO POR EL USUARIO******************************/
 function agregarReserva(personas) {
     const dptoAsignado = arrayDepartamentos.find(departamento => departamento.personas == personas);
-    if (dptoAsignado) {
-        reservaUsuario.push(dptoAsignado);
-        //console.log(reservaUsuario);
-        
+        if (dptoAsignado) {
+            reservaUsuario.push(dptoAsignado);
+        //console.log(reservaUsuario); 
         console.log(dptoAsignado)
     }
 }

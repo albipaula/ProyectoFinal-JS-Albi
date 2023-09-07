@@ -6,8 +6,14 @@
   <link rel="icon" type="image/x-icon" href="./images/">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montez&display=swap" rel="stylesheet">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Dosis:wght@300&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&family=Moirai+One&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
   <link rel="stylesheet" href="stylesheet.css">
 </head>
@@ -16,19 +22,20 @@
 <!-- -------------------------MENU DE NAVEGACION  ------------------------->
 <body >
       <nav class="navbar navbar-expand-lg ">
-        <div class="container-fluid">
+        <div class="container">
           
         
-          <a class="navbar-brand " href="#" >  Cozy Holidays Apartments  </a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <a class="navbar-brand " href="#" > <object data="./images/COZY_APARTMENTS__1_-removebg-preview.svg" width="170" height="170"> </object>
+           </a>
+         <!--  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
-          </button>
+          </button> -->
         
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
+             <!--  <li class="nav-item">
                 <a class="nav-link active me-auto mb-2 mb-lg-0" aria-current="page" href="#portada">Inicio</a>
-              </li>
+              </li> -->
               <li class="nav-item">
                 <a class="nav-link" href="#departamentosOpciones">Departamentos</a>
               </li>
@@ -47,60 +54,66 @@
       <!------------------------- PORTADA ------------------------>
      <section class="portada " id="portada" >
               <div class="imagenDePortada">    
-                <img src="./images/cozy I.jpg" id = "imgPortada" class="img-fluid" alt="imagenDePortada">
+                <img src="./images/portada (2).webp" id = "imgPortada" class="img-fluid img-responsive" alt="imagenDePortada">
               </div>  
       </section>
            
      
       <!--------------- FORMULARIO DE RESERVA -------------------------> 
-  
 
-      <section class="formularioContenedor container" id="formularioContenedor" > 
+
+      <section class="formularioContenedor container-fluid" id="formularioContenedor" > 
+      
         
-        <h3 class="text-center" > Realiza tu Reserva</h3>
 
-        <form  id="formulario" class="formulario container" >
+        <form  id="formulario" class="formulario container-fluid row" >
+      
+          <div class="col-xl-4 " >
           
           <label for="personas"></label><br>
-          <input type="number" name="personas" id="personas" placeholder="Personas" min="1" max="4">
+          <input type="number" name="personas" id="personas" placeholder="Guests" min="1" max="4">
 
           <label for="nombreCompleto"></label><br>
-          <input type="text" id="nombre" name="nombreCompleto" size="8" tabindex="1"placeholder="Nombre y Apellido" >
+          <input type="text" id="nombre" name="nombreCompleto" size="8" tabindex="1"placeholder="Full Name" >
 
           <label for="checkIn"></label><br>
-          <input type="date" name="checkIn" id="checkIn" placeholder="Fecha de Ingreso" oninput="calculardiasDiscount()">
+          <input type="date" name="checkIn" id="checkIn" placeholder="check-In" oninput="calculardiasDiscount()">
           <label for="checkOut"></label><br>
-          <input type="date" name="checkOut" id="checkOut" placeholder="Fecha de Salida" oninput="calculardiasDiscount()">
+          <input type="date" name="checkOut" id="checkOut" placeholder="check-Out" oninput="calculardiasDiscount()">
           <label for="noches"></label><br>
-          <input type="text" id="noches" name="noches" placeholder="Noches">
+          <input type="text" id="noches" name="noches" placeholder="Nights">
           <label for="comentario"></label>
-          <input type="text" id="comentario" name="comentario"  placeholder="Deja algun comentario "
+          <input type="text" id="comentario" name="comentario"  placeholder="message "
           maxlength="50" size="50">
+        </div>
+          <div class="col-xl-7" >
+            <section  class=" container departamentosOpciones " id="departamentosOpciones" >
+      
+            </section>
+        </div>
+        <section id="reserva" class="reserva container text-center  " > 
 
+    
+          <button   type="submit" id=" reserva" class="button--seleccion btn-reserva"> Reservar</button>
+          
+  </section>  
+        </form>
+    
+      </section> 
+  
 <!------------------------- DEPARTAMENTOS OPCIONES---------------------------------------------------->
-<div class="container precioDolarContainer">
+<div class="container precioDolarContainer text-center">
   <p>Todas las reservas se cotizan al dolar el dia que se efectua el pago de la reserva </p>
   <p type="number"  class="precioDolar" id="precioDolar"> </p>
 </div>
     
-<section  
-          class=" container departamentosOpciones " id="departamentosOpciones" >
-      
-        </section>
 
-        <section id="reserva" class="reserva container text-center  " > 
-      
-  
-        </section>    
-          <button   type="submit" id=" reserva" class="button--seleccion  "> Reservar</button>
-          
-     
-        </form>
+
+
+       
     
-      </section> 
      
-
-
+     
       
       
 
@@ -108,9 +121,9 @@
       <section id="redes" class="formularioContacto container" ><div>
         
         <div class="redes container">
-          <li><box-icon name='whatsapp' type='logo' animation='tada' color='#fffefe' size = lg  ></box-icon></li>
-          <li><box-icon name='phone-call' animation='tada' color='#fffefe'  size = lg   ></box-icon></li>
-          <li>  <box-icon name='envelope' animation='tada' color='#fffefe' size = lg ></box-icon> </li>
+        <a href="#">  <li><box-icon name='whatsapp' type='logo' animation='tada' color='#fffefe' size = lg  ></box-icon></li></a>
+        <a href="#">  <li><box-icon name='phone-call' animation='tada' color='#fffefe'  size = lg   ></box-icon></li></a>
+         <a href="#"> <li>  <box-icon name='envelope' animation='tada' color='#fffefe' size = lg ></box-icon> </li></a>
         </div>
       </section>  
             <hr>
